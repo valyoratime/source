@@ -10,6 +10,8 @@ moment.locale('ru', {
   workingWeekdays: [1, 2, 3, 4, 5],
 })
 
+const businessDaysInWeek = 5
+
 
 class App extends Component {
   newYear = () => {
@@ -36,28 +38,46 @@ class App extends Component {
     }
   }
   
-  daysWord = number => DeclensionHelper.daysWord(number)
-  workWord = number => DeclensionHelper.workWord(number)
-  leftWord = number => DeclensionHelper.leftWord(number)
+  businessWeeksLeft = days => Math.floor(days / businessDaysInWeek)
+  additionalBusinessDaysLeft = days => days % businessDaysInWeek
   
   render() {
     const daysLeft = this.daysLeftForm()
-    const dayWord = this.daysWord(daysLeft)
-    const leftDayWord = this.leftWord(daysLeft)
+    const dayWord = DeclensionHelper.daysWord(daysLeft)
+    const leftDayWord = DeclensionHelper.leftWord(daysLeft)
     
-    const workingDaysLeft = this.businessDaysLeft()
-    const workWord = this.workWord(workingDaysLeft)
-    const workingDayWord = this.daysWord(workingDaysLeft)
-    const leftWorkingDayWord = this.leftWord(workingDaysLeft)
+    const businessDaysLeft = this.businessDaysLeft()
+    const workWord = DeclensionHelper.workWord(businessDaysLeft)
+    const workingDayWord = DeclensionHelper.daysWord(businessDaysLeft)
+    const leftWorkingDayWord = DeclensionHelper.leftWord(businessDaysLeft)
+    
+    const businessWeeksLeft = this.businessWeeksLeft(businessDaysLeft)
+    const leftWeekWord = DeclensionHelper.leftWeekWord(businessWeeksLeft)
+    const workWeekWord = DeclensionHelper.workWeekWord(businessWeeksLeft)
+    const weekWord = DeclensionHelper.weekWord(businessWeeksLeft)
+    
+    const additionalBusinessDaysLeft = this.additionalBusinessDaysLeft(businessDaysLeft)
+    const additionalWorkWord = DeclensionHelper.workWord(additionalBusinessDaysLeft)
+    const additionalWorkingDayWord = DeclensionHelper.daysWord(additionalBusinessDaysLeft)
+    
+    const slogan = businessDaysLeft < 100 ? "Возрадуйся же, " : "Взгрустни немного, "
     
     
     return (
       <div className="App">
-        <h1>Возрадуйся же, <span>@valyora</span></h1>
+        <h1>{slogan}<span>@valyora</span></h1>
         <div className="left">
           <p className="normal-days">Ибо до нового года {leftDayWord} {daysLeft} {dayWord}!</p>
           <p className="working-days">
-            А это значит, что {leftWorkingDayWord} {workingDaysLeft} {workWord} {workingDayWord}!
+            А это значит, что {leftWorkingDayWord} {businessDaysLeft} {workWord} {workingDayWord}!
+          </p>
+          <p>
+            {(businessWeeksLeft >= 1) && (
+              <span>
+                {`А это значит, что ${leftWeekWord} ${businessWeeksLeft} ${workWeekWord} ${weekWord}
+                и ${additionalBusinessDaysLeft} ${additionalWorkWord} ${additionalWorkingDayWord}`}
+              </span>
+            )}
           </p>
         </div>
       </div>
