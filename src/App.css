@@ -30,6 +30,7 @@ body {
   max-width: 150px;
   text-align: left;
   font-style: italic;
+  color: rgba(12, 17, 66, 0.82);
 }
 
 @media screen and (min-device-width: 850px) {
