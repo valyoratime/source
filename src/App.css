@@ -7,10 +7,11 @@
 body {
   background: #be050b;
   font-family: 'Neucha', cursive;
+  color: rgba(215, 174, 123, 1);
 }
 
 .valyora {
-  color: #212b21;
+  color: rgba(12, 17, 66, 0.82);
 }
 
 .normal-days {
@@ -32,7 +33,7 @@ body {
 }
 
 @media screen and (min-device-width: 850px) {
-  #Christmas_Lights {
+  #christmas-lights {
     height: 100%;
   }
   h1 {
@@ -42,7 +43,7 @@ body {
 }
 
 @media screen and (max-device-width: 849px) {
-  #Christmas_Lights {
+  #christmas-lights {
     height: auto;
   }
   h1 {
@@ -52,7 +53,7 @@ body {
 }
 
 @media screen and (max-device-width: 500px) {
-  #Christmas_Lights {
+  #christmas-lights {
     height: auto;
   }
   h1 {
@@ -74,7 +75,7 @@ body {
 }
 
 
-#Christmas_Lights {
+#christmas-lights {
   margin: 0;
   position: fixed;
   top: 0px;
