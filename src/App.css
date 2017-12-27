@@ -6,6 +6,11 @@
 
 body {
   background: #be050b;
+  font-family: 'Neucha', cursive;
+}
+
+.valyora {
+  color: #212b21;
 }
 
 .normal-days {
@@ -41,10 +46,33 @@ body {
     height: auto;
   }
   h1 {
-    margin-top: 340px;
+    margin-top: 80px;
     font-size: 2.8em;
   }
 }
+
+@media screen and (max-device-width: 500px) {
+  #Christmas_Lights {
+    height: auto;
+  }
+  h1 {
+    margin-top: 80px;
+    font-size: 2.8em;
+  }
+  .note {
+    max-height: 30px;
+    max-width: 400px;
+    font-size: 0.7em;
+    bottom: 10px;
+  }
+  .normal-days {
+    font-size: 1.4em;
+  }
+  .business-days {
+    font-size: 1em;
+  }
+}
+
 
 #Christmas_Lights {
   margin: 0;

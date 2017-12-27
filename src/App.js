@@ -30,7 +30,6 @@ class App extends Component {
   
   businessDaysLeft = (to = this.newYear()) => {
     const diff = Math.round(to.businessDiff(this.now(), true))
-    
     if (this.nowIsWeekend()) {
       return diff
     } else {
@@ -66,7 +65,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="wrapper">
-          <h1>{slogan}<span>@valyora</span></h1>
+          <h1>{slogan}<span className="valyora">@valyora</span></h1>
           <div className="left">
             <p className="normal-days">Ибо до нового года {leftDayWord} {daysLeft} {dayWord}!</p>
             <p className="business-days">

@@ -76,7 +76,7 @@ function bootstrap() {
     flake.speed = Math.random() + 0.5
     flake.velY = flake.speed
     flake.velX = 0
-    flake.opacity = (Math.random() * 0.5) + 0.2
+    flake.opacity = (Math.random() * 0.5) + 0.1
   }
   
   function init() {
@@ -85,7 +85,7 @@ function bootstrap() {
         y = Math.floor(Math.random() * canvas.height),
         size = (Math.random() * 3) + 2,
         speed = Math.random() + 0.5,
-        opacity = (Math.random() * 0.5) + 0.2
+        opacity = (Math.random() * 0.5) + 0.1
       
       flakes.push({
         speed: speed,
