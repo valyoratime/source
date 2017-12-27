@@ -14,6 +14,26 @@ const businessDaysInWeek = 5
 
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = this.initialState()
+  }
+  
+  initialState = () => {
+    const businessDaysLeft = this.businessDaysLeft()
+    const businessWeeksLeft = this.businessWeeksLeft(businessDaysLeft)
+    const additionalBusinessDaysLeft = this.additionalBusinessDaysLeft(businessDaysLeft)
+    
+    return {
+      newYear: this.newYear(),
+      daysLeft: this.daysLeftForm(),
+      businessDaysLeft,
+      businessWeeksLeft,
+      additionalBusinessDaysLeft,
+    }
+  }
+  
+  
   newYear = () => {
     return (new Date()).getFullYear() === 2017
       ? moment('31-12-2017', 'DD-MM-YYYY')
@@ -23,9 +43,11 @@ class App extends Component {
   now = () => moment(new Date())
   dayOfWeek = () => this.now().day()
   nowIsWeekend = () => this.dayOfWeek() === 0 || this.dayOfWeek() === 6
+  businessWeeksLeft = days => Math.floor(days / businessDaysInWeek)
+  additionalBusinessDaysLeft = days => days % businessDaysInWeek
   
-  daysLeftForm = (now = this.now()) => {
-    return Math.round(this.newYear().diff(now, 'days', true))
+  daysLeftForm = (date = this.now()) => {
+    return Math.round(this.newYear().diff(date, 'days', true))
   }
   
   businessDaysLeft = (to = this.newYear()) => {
@@ -37,25 +59,21 @@ class App extends Component {
     }
   }
   
-  businessWeeksLeft = days => Math.floor(days / businessDaysInWeek)
-  additionalBusinessDaysLeft = days => days % businessDaysInWeek
   
   render() {
-    const daysLeft = this.daysLeftForm()
+    const { daysLeft, businessDaysLeft, businessWeeksLeft, additionalBusinessDaysLeft } = this.state
+    
     const dayWord = DeclensionHelper.daysWord(daysLeft)
     const leftDayWord = DeclensionHelper.leftWord(daysLeft)
     
-    const businessDaysLeft = this.businessDaysLeft()
     const workWord = DeclensionHelper.workWord(businessDaysLeft)
     const workingDayWord = DeclensionHelper.daysWord(businessDaysLeft)
     const leftWorkingDayWord = DeclensionHelper.leftWord(businessDaysLeft)
     
-    const businessWeeksLeft = this.businessWeeksLeft(businessDaysLeft)
     const leftWeekWord = DeclensionHelper.leftWeekWord(businessWeeksLeft)
     const workWeekWord = DeclensionHelper.workWeekWord(businessWeeksLeft)
     const weekWord = DeclensionHelper.weekWord(businessWeeksLeft)
     
-    const additionalBusinessDaysLeft = this.additionalBusinessDaysLeft(businessDaysLeft)
     const additionalWorkWord = DeclensionHelper.workWord(additionalBusinessDaysLeft)
     const additionalWorkingDayWord = DeclensionHelper.daysWord(additionalBusinessDaysLeft)
     
