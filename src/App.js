@@ -60,25 +60,28 @@ class App extends Component {
     const additionalWorkWord = DeclensionHelper.workWord(additionalBusinessDaysLeft)
     const additionalWorkingDayWord = DeclensionHelper.daysWord(additionalBusinessDaysLeft)
     
-    const slogan = businessDaysLeft < 100 ? "Возрадуйся же, " : "Взгрустни немного, "
+    const slogan = businessDaysLeft < 100 ? 'Возрадуйся же, ' : 'Взгрустни немного, '
     
     
     return (
       <div className="App">
-        <h1>{slogan}<span>@valyora</span></h1>
-        <div className="left">
-          <p className="normal-days">Ибо до нового года {leftDayWord} {daysLeft} {dayWord}!</p>
-          <p className="working-days">
-            А это значит, что {leftWorkingDayWord} {businessDaysLeft} {workWord} {workingDayWord}!
-          </p>
-          <p>
-            {(businessWeeksLeft >= 1) && (
-              <span>
+        <div className="wrapper">
+          <h1>{slogan}<span>@valyora</span></h1>
+          <div className="left">
+            <p className="normal-days">Ибо до нового года {leftDayWord} {daysLeft} {dayWord}!</p>
+            <p className="business-days">
+              А это значит, что {leftWorkingDayWord} {businessDaysLeft} {workWord} {workingDayWord}!*
+            </p>
+            <p>
+              {(businessWeeksLeft >= 1) && (
+                <span>
                 {`А это значит, что ${leftWeekWord} ${businessWeeksLeft} ${workWeekWord} ${weekWord}
                 и ${additionalBusinessDaysLeft} ${additionalWorkWord} ${additionalWorkingDayWord}`}
               </span>
-            )}
-          </p>
+              )}
+            </p>
+          </div>
+          <p className="note">* Количество рабочих дней считается исключая сегодняшний, как ты любишь.</p>
         </div>
       </div>
     )
