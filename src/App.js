@@ -78,7 +78,6 @@ class App extends Component {
     const workWeekWord = DeclensionHelper.workWeekWord(businessWeeksLeft)
     const weekWord = DeclensionHelper.weekWord(businessWeeksLeft)
     
-    const additionalWorkWord = DeclensionHelper.workWord(additionalBusinessDaysLeft)
     const additionalWorkingDayWord = DeclensionHelper.daysWord(additionalBusinessDaysLeft)
     
     const slogan = businessDaysLeft < 100 ? 'Возрадуйся же, ' : 'Взгрустни немного, '
