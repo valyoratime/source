@@ -36,8 +36,8 @@ class App extends Component {
   
   newYear = () => {
     return (new Date()).getFullYear() === 2017
-      ? moment('31-12-2017', 'DD-MM-YYYY')
-      : moment('31-12-2018', 'DD-MM-YYYY')
+      ? moment('01-01-2018', 'DD-MM-YYYY')
+      : moment('01-01-2019', 'DD-MM-YYYY')
   }
   
   now = () => moment(new Date())
@@ -47,11 +47,15 @@ class App extends Component {
   additionalBusinessDaysLeft = days => days % businessDaysInWeek
   
   daysLeftForm = (date = this.now()) => {
-    return Math.round(this.newYear().diff(date, 'days', true))
+    const diff = this.newYear().diff(date, 'days', true)
+    if (diff <= 0) return 0
+    return Math.round(diff)
   }
   
   businessDaysLeft = (to = this.newYear()) => {
     const diff = Math.round(to.businessDiff(this.now(), true))
+    if (diff === 0) return 0
+    
     if (this.nowIsWeekend()) {
       return diff
     } else {
